@@ -2,20 +2,24 @@ package clases;
 
 import interfaz.GeneradorReporte;
 
+//Clase que implementa GeneradorReporte. Contiene metodos estaticos para generar distintos tipos de reportes 
 public class Reporte implements GeneradorReporte {
     private String tipo;
     private String contenido;
 
+    //Constructor: asigna el tipo y contenido del reporte 
     public Reporte(String tipo, String contenido) {
         this.tipo = tipo;
         this.contenido = contenido;
     }
 
+    //Devuelve el reporte formateado con su tipo y contenido 
     @Override
     public String generarReporte() {
         return "=== REPORTE: " + tipo + " ===\n\n" + contenido;
     }
 
+    //Genera un reporte con la cantidad de departamentos disponibles, reservados y vendidos por proyecto 
     public static Reporte departamentosPorProyecto(ProyectosConstruccion proyecto) {
         StringBuilder sb = new StringBuilder();
         sb.append("Proyecto: ").append(proyecto.getNombre()).append("\n");
@@ -33,6 +37,7 @@ public class Reporte implements GeneradorReporte {
         return new Reporte("Dptos por Proyecto", sb.toString());
     }
 
+    //Genera un reporte de ventas realizadas por un asesor especifico 
     public static Reporte ventasPorAsesor(Empleado asesor, Venta[] ventas) {
         StringBuilder sb = new StringBuilder();
         sb.append("Asesor: ").append(asesor.getNombreCompleto()).append("\n\n");
@@ -50,8 +55,9 @@ public class Reporte implements GeneradorReporte {
         return new Reporte("Ventas por Asesor", sb.toString());
     }
 
+    //Genera un reporte de ventas filtradas por un rango de fechas 
     public static Reporte ventasPorRangoFechas(Venta[] ventas,
-                                                 String desde, String hasta) {
+                                                  String desde, String hasta) {
         StringBuilder sb = new StringBuilder();
         sb.append("Ventas del ").append(desde).append(" al ").append(hasta).append("\n\n");
         int total = 0;
@@ -71,6 +77,7 @@ public class Reporte implements GeneradorReporte {
         return new Reporte("Ventas por Rango de Fechas", sb.toString());
     }
 
+    //Genera un reporte con los ingresos totales y saldos pendientes de cuotas 
     public static Reporte ingresosYSaldos(Venta[] ventas) {
         StringBuilder sb = new StringBuilder();
         double ingresosTotales = 0;
@@ -84,6 +91,7 @@ public class Reporte implements GeneradorReporte {
         return new Reporte("Ingresos y Saldos", sb.toString());
     }
 
+    //Genera un reporte con el porcentaje de ventas de cada proyecto 
     public static Reporte proyectosMayorVenta(ProyectosConstruccion[] proyectos) {
         StringBuilder sb = new StringBuilder();
         double maxPorcentaje = -1;

@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import utilitario.PanelFondo;
 
+//Clase hija de JFrame. Ventana para buscar una venta y registrar el pago de una cuota 
 public class frmRegistroPago extends JFrame {
 
     private GestionVenta gestionVenta;
@@ -15,6 +16,7 @@ public class frmRegistroPago extends JFrame {
     private JTable tablaCuotas;
     private DefaultTableModel modelCuotas;
 
+    //Constructor: configura la interfaz grafica para el registro de pagos 
     public frmRegistroPago(GestionVenta gestionVenta) {
         this.gestionVenta = gestionVenta;
 
@@ -62,6 +64,7 @@ public class frmRegistroPago extends JFrame {
         add(panel);
     }
 
+    //Busca la venta asociada al codigo de departamento y muestra sus cuotas 
     private void buscarVenta() {
         String cod = txtCodDep.getText().trim();
         if (cod.isEmpty()) return;
@@ -88,6 +91,7 @@ public class frmRegistroPago extends JFrame {
         }
     }
 
+    //Marca la cuota seleccionada como pagada 
     private void pagarCuota() {
         int row = tablaCuotas.getSelectedRow();
         if (row < 0) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-*** GENERATED FROM project.xml - DO NOT EDIT  ***
-***         EDIT ../build.xml INSTEAD         ***
+GENERATED FROM project.xml - DO NOT EDIT  ***
+        EDIT ../build.xml INSTEAD         ***
 
 For the purpose of easier reading the script
 is divided into following sections:
@@ -614,7 +614,7 @@ is divided into following sections:
                     <isset property="test.method"/>
                 </condition>
                 <union id="test.set">
-                    <fileset dir="${test.src.dir}" excludes="@{excludes},**/*.xml,${excludes}" includes="@{includes}">
+                    <fileset dir="${test.src.dir}" excludes="@{excludes},**.xml,${excludes}" includes="@{includes}">
                         <filename name="@{testincludes}"/>
                     </fileset>
                 </union>
@@ -1509,10 +1509,10 @@ is divided into following sections:
                 <path path="${javac.classpath}"/>
             </classpath>
             <fileset dir="${src.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
+                <filename name="**.java"/>
             </fileset>
             <fileset dir="${build.generated.sources.dir}" erroronmissingdir="false">
-                <include name="**/*.java"/>
+                <include name="**.java"/>
                 <exclude name="*.java"/>
             </fileset>
             <arg line="${javadoc.endorsed.classpath.cmd.line.arg}"/>
@@ -1520,10 +1520,10 @@ is divided into following sections:
         </javadoc>
         <copy todir="${dist.javadoc.dir}">
             <fileset dir="${src.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
+                <filename name="*doc-files/**"/>
             </fileset>
             <fileset dir="${build.generated.sources.dir}" erroronmissingdir="false">
-                <include name="**/doc-files/**"/>
+                <include name="*doc-files/**"/>
             </fileset>
         </copy>
     </target>
@@ -1565,7 +1565,7 @@ is divided into following sections:
                 <length length="0" string="${test.module.name}" when="greater"/>
             </and>
         </condition>
-        <fileset dir="${build.test.classes.dir}" id="run.test.packages.internal" includes="**/*.class"/>
+        <fileset dir="${build.test.classes.dir}" id="run.test.packages.internal" includes="**.class"/>
         <property location="${build.test.classes.dir}" name="build.test.classes.dir.abs.internal"/>
         <pathconvert pathsep=" " property="run.test.addexports.internal" refid="run.test.packages.internal">
             <chainedmapper>
@@ -1639,7 +1639,7 @@ is divided into following sections:
         <mkdir dir="${build.test.results.dir}"/>
     </target>
     <target depends="init,compile-test,-init-test-run-module-properties,-pre-test-run" if="have.tests" name="-do-test-run">
-        <j2seproject3:test includes="${includes}" testincludes="**/*Test.java"/>
+        <j2seproject3:test includes="${includes}" testincludes="**Test.java"/>
     </target>
     <target depends="init,compile-test,-pre-test-run,-do-test-run" if="have.tests" name="-post-test-run">
         <fail if="tests.failed" unless="ignore.failing.tests">Some tests failed; see details above.</fail>

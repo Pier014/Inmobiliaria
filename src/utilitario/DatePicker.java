@@ -7,15 +7,18 @@ import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+//Clase hija de JTextField. Componente personalizado para seleccion de fechas con un calendario emergente 
 public class DatePicker extends JTextField {
 
     private String fechaSeleccionada;
     private JPopupMenu popup;
 
+    //Constructor por defecto: inicializa con la fecha actual 
     public DatePicker() {
         this(new Date());
     }
 
+    //Constructor: inicializa el campo con una fecha especifica 
     public DatePicker(Date fecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         fechaSeleccionada = sdf.format(fecha);
@@ -34,15 +37,18 @@ public class DatePicker extends JTextField {
         });
     }
 
+    //Retorna la fecha seleccionada en formato yyyy-MM-dd 
     public String getFecha() {
         return fechaSeleccionada;
     }
 
+    //Establece la fecha seleccionada y actualiza el texto del campo 
     public void setFecha(String fecha) {
         this.fechaSeleccionada = fecha;
         setText(fecha);
     }
 
+    //Muestra el calendario emergente para seleccionar una fecha 
     private void mostrarCalendario() {
         popup = new JPopupMenu();
         popup.setBorder(new LineBorder(new Color(52, 152, 219), 2));

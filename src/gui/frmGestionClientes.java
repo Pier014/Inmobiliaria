@@ -8,12 +8,14 @@ import java.awt.*;
 import utilitario.DatePicker;
 import utilitario.PanelFondo;
 
+//Clase hija de JFrame. Ventana para gestionar (CRUD) clientes 
 public class frmGestionClientes extends JFrame {
 
     private GestionCliente gestionCliente;
     private JTable tabla;
     private DefaultTableModel model;
 
+    //Constructor: configura la interfaz grafica y carga los clientes existentes 
     public frmGestionClientes(GestionCliente gestionCliente) {
         this.gestionCliente = gestionCliente;
 
@@ -74,6 +76,7 @@ public class frmGestionClientes extends JFrame {
         cargarClientes();
     }
 
+    //Carga los clientes desde GestionCliente a la tabla 
     private void cargarClientes() {
         model.setRowCount(0);
         for (Cliente c : gestionCliente.obtenerClientes()) {
@@ -86,6 +89,7 @@ public class frmGestionClientes extends JFrame {
         }
     }
 
+    //Valida que un campo de texto no este vacio 
     private String validarCampoVacio(String val, String nombre) {
         if (val == null || val.trim().isEmpty()) {
             throw new IllegalArgumentException(nombre + " no puede estar vacio.");
@@ -93,6 +97,7 @@ public class frmGestionClientes extends JFrame {
         return val.trim();
     }
 
+    //Valida que un monto sea un numero no negativo 
     private double validarMontoNoNegativo(String val, String nombre) {
         double num;
         try {
@@ -106,6 +111,7 @@ public class frmGestionClientes extends JFrame {
         return num;
     }
 
+    //Abre un dialogo para crear un nuevo cliente y lo registra 
     private void nuevoCliente() {
         JTextField dni = new JTextField();
         JTextField nombres = new JTextField();
@@ -151,6 +157,7 @@ public class frmGestionClientes extends JFrame {
         }
     }
 
+    //Abre un dialogo para editar el cliente seleccionado 
     private void editarCliente() {
         int row = tabla.getSelectedRow();
         if (row < 0) {
@@ -206,6 +213,7 @@ public class frmGestionClientes extends JFrame {
         }
     }
 
+    //Elimina el cliente seleccionado tras confirmacion 
     private void eliminarCliente() {
         int row = tabla.getSelectedRow();
         if (row < 0) {

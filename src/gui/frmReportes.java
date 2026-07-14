@@ -7,6 +7,7 @@ import java.awt.*;
 import utilitario.DatePicker;
 import utilitario.PanelFondo;
 
+//Clase hija de JFrame. Ventana para generar y visualizar reportes gerenciales 
 public class frmReportes extends JFrame {
 
     private GestionProyecto gestionProyecto;
@@ -17,6 +18,7 @@ public class frmReportes extends JFrame {
     private JPanel panelFechas;
     private JTextArea txtResultado;
 
+    //Constructor: configura la interfaz grafica de reportes 
     public frmReportes(GestionProyecto gestionProyecto, GestionVenta gestionVenta,
                         GestionEmpleado gestionEmpleado) {
         this.gestionProyecto = gestionProyecto;
@@ -92,6 +94,7 @@ public class frmReportes extends JFrame {
         add(panel);
     }
 
+    //Genera el reporte seleccionado y lo muestra en el area de texto 
     private void generarReporte() {
         String reporte = "";
         int tipo = cmbTipoReporte.getSelectedIndex();

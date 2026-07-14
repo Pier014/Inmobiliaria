@@ -5,16 +5,19 @@ import javax.swing.*;
 import java.awt.*;
 import utilitario.PanelFondo;
 
+//Clase hija de JFrame. Ventana de inicio de sesion del sistema 
 public class frmLogin extends JFrame {
 
     private JTextField txtUsuario;
     private JPasswordField txtPassword;
     private GestionEmpleado gestionEmpleado;
 
+    //Constructor por defecto: crea una instancia nueva de GestionEmpleado 
     public frmLogin() {
         this(new GestionEmpleado());
     }
 
+    //Constructor: configura la interfaz grafica de inicio de sesion 
     public frmLogin(GestionEmpleado gestionEmpleado) {
         this.gestionEmpleado = gestionEmpleado;
 
@@ -72,6 +75,7 @@ public class frmLogin extends JFrame {
         add(panel);
     }
 
+    //Valida las credenciales ingresadas y abre el menu principal si son correctas 
     private void login() {
         String user = txtUsuario.getText().trim();
         String pass = new String(txtPassword.getPassword());

@@ -2,15 +2,18 @@ package clases;
 
 import interfaz.GeneradorReporte;
 
+//Clase que implementa GeneradorReporte. Genera un contrato de compra-venta en formato texto
 public class Contrato implements GeneradorReporte {
     private Venta venta;
     private ProyectosConstruccion proyecto;
 
+    //Constructor: asigna la venta y el proyecto asociados al contrato
     public Contrato(Venta venta, ProyectosConstruccion proyecto) {
         this.venta = venta;
         this.proyecto = proyecto;
     }
 
+    //Genera y devuelve el texto completo del contrato de compra-venta
     @Override
     public String generarReporte() {
         StringBuilder sb = new StringBuilder();

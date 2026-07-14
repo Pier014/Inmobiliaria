@@ -7,6 +7,7 @@ import java.awt.*;
 import utilitario.DatePicker;
 import utilitario.PanelFondo;
 
+//Clase hija de JFrame. Ventana para registrar una reserva de departamento 
 public class frmRegistroReserva extends JFrame {
 
     private GestionCliente gestionCliente;
@@ -17,6 +18,7 @@ public class frmRegistroReserva extends JFrame {
     private JTextField txtMonto;
     private DatePicker dpFechaReserva, dpFechaVigencia;
 
+    //Constructor: configura la interfaz grafica para el registro de reservas 
     public frmRegistroReserva(GestionCliente gestionCliente, GestionProyecto gestionProyecto) {
         this.gestionCliente = gestionCliente;
         this.gestionProyecto = gestionProyecto;
@@ -127,6 +129,7 @@ public class frmRegistroReserva extends JFrame {
         cmbProyecto.addActionListener(e -> cargarDepartamentos());
     }
 
+    //Carga los clientes y proyectos disponibles en los combos 
     private void cargarCombos() {
         cmbCliente.removeAllItems();
         for (Cliente c : gestionCliente.obtenerClientes()) cmbCliente.addItem(c);
@@ -137,6 +140,7 @@ public class frmRegistroReserva extends JFrame {
         cargarDepartamentos();
     }
 
+    //Carga los departamentos disponibles del proyecto seleccionado 
     private void cargarDepartamentos() {
         cmbDepartamento.removeAllItems();
         ProyectosConstruccion p = (ProyectosConstruccion) cmbProyecto.getSelectedItem();
@@ -149,6 +153,7 @@ public class frmRegistroReserva extends JFrame {
         }
     }
 
+    //Valida que un campo de texto no este vacio y resalta el campo en rojo si lo esta 
     private String validarCampoVacio(JTextField campo, String nombre) {
         String val = campo.getText().trim();
         if (val.isEmpty()) {
@@ -160,6 +165,7 @@ public class frmRegistroReserva extends JFrame {
         return val;
     }
 
+    //Valida que un monto sea un numero positivo 
     private double validarMontoPositivo(JTextField campo, String nombre) {
         double val = Double.parseDouble(validarCampoVacio(campo, nombre));
         if (val <= 0) {
@@ -171,6 +177,7 @@ public class frmRegistroReserva extends JFrame {
         return val;
     }
 
+    //Registra la reserva con los datos ingresados en el formulario 
     private void registrarReserva() {
         if (cmbCliente.getSelectedItem() == null || cmbDepartamento.getItemCount() == 0) {
             JOptionPane.showMessageDialog(this, "No hay clientes o departamentos disponibles.",

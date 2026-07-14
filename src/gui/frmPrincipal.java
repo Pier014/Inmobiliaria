@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import utilitario.PanelFondo;
 
+//Clase hija de JFrame. Ventana principal del menu con botones segun el rol del usuario 
 public class frmPrincipal extends JFrame {
 
     private GestionEmpleado gestionEmpleado;
@@ -15,6 +16,7 @@ public class frmPrincipal extends JFrame {
     private GestionAcabado gestionAcabado;
     private Empleado sesion;
 
+    //Constructor: configura el menu principal mostrando opciones segun el rol del empleado 
     public frmPrincipal(GestionEmpleado gestionEmpleado, Empleado sesion) {
         this.gestionEmpleado = gestionEmpleado;
         this.gestionCliente = new GestionCliente();
@@ -100,6 +102,7 @@ public class frmPrincipal extends JFrame {
         add(panel);
     }
 
+    //Crea un boton estilizado con texto y color de fondo 
     private JButton crearBoton(String texto, Color color) {
         JButton btn = new JButton(texto);
         btn.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -110,6 +113,7 @@ public class frmPrincipal extends JFrame {
         return btn;
     }
 
+    //Abre una ventana hija ocultando la ventana principal y la muestra al cerrarse 
     private void abrir(JFrame frame) {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -122,6 +126,7 @@ public class frmPrincipal extends JFrame {
         frame.setVisible(true);
     }
 
+    //Cierra la sesion actual y regresa a la ventana de login 
     private void cerrarSesion() {
         dispose();
         new frmLogin(gestionEmpleado).setVisible(true);

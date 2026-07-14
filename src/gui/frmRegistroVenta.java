@@ -7,6 +7,7 @@ import java.awt.*;
 import utilitario.DatePicker;
 import utilitario.PanelFondo;
 
+//Clase hija de JFrame. Ventana para registrar una venta de departamento 
 public class frmRegistroVenta extends JFrame {
 
     private GestionCliente gestionCliente;
@@ -20,6 +21,7 @@ public class frmRegistroVenta extends JFrame {
     private JTextArea txtFechas;
     private JPanel panelCuotas;
 
+    //Constructor: configura la interfaz grafica para el registro de ventas 
     public frmRegistroVenta(GestionCliente gestionCliente, GestionProyecto gestionProyecto,
                              GestionVenta gestionVenta) {
         this.gestionCliente = gestionCliente;
@@ -147,11 +149,13 @@ public class frmRegistroVenta extends JFrame {
         cargarClientes();
     }
 
+    //Carga los clientes disponibles en el combo 
     private void cargarClientes() {
         cmbCliente.removeAllItems();
         for (Cliente c : gestionCliente.obtenerClientes()) cmbCliente.addItem(c);
     }
 
+    //Valida que un campo de texto no este vacio y resalta el campo en rojo si lo esta 
     private String validarCampoVacio(JTextField campo, String nombre) {
         String val = campo.getText().trim();
         if (val.isEmpty()) {
@@ -163,6 +167,7 @@ public class frmRegistroVenta extends JFrame {
         return val;
     }
 
+    //Valida que un monto sea un numero positivo 
     private double validarMontoPositivo(JTextField campo, String nombre) {
         double val = Double.parseDouble(validarCampoVacio(campo, nombre));
         if (val <= 0) {
@@ -174,6 +179,7 @@ public class frmRegistroVenta extends JFrame {
         return val;
     }
 
+    //Registra la venta con los datos ingresados y genera el contrato 
     private void registrarVenta() {
         try {
             String cod = validarCampoVacio(txtCodDep, "Codigo de departamento");

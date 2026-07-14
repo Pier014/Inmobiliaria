@@ -7,12 +7,14 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import utilitario.PanelFondo;
 
+//Clase hija de JFrame. Ventana para gestionar (CRUD) acabados opcionales 
 public class frmGestionAcabados extends JFrame {
 
     private GestionAcabado gestionAcabado;
     private JTable tabla;
     private DefaultTableModel model;
 
+    //Constructor: configura la interfaz grafica y carga los acabados existentes 
     public frmGestionAcabados(GestionAcabado gestionAcabado) {
         this.gestionAcabado = gestionAcabado;
 
@@ -71,6 +73,7 @@ public class frmGestionAcabados extends JFrame {
         cargarAcabados();
     }
 
+    //Carga los acabados desde GestionAcabado a la tabla 
     private void cargarAcabados() {
         model.setRowCount(0);
         for (AcabadoOpcional a : gestionAcabado.obtenerAcabados()) {
@@ -81,6 +84,7 @@ public class frmGestionAcabados extends JFrame {
         }
     }
 
+    //Valida que un campo de texto no este vacio 
     private String validarCampoVacio(String val, String nombre) {
         if (val == null || val.trim().isEmpty()) {
             throw new IllegalArgumentException(nombre + " no puede estar vacio.");
@@ -88,6 +92,7 @@ public class frmGestionAcabados extends JFrame {
         return val.trim();
     }
 
+    //Valida que un monto sea un numero positivo 
     private double validarMontoPositivo(String val, String nombre) {
         double num;
         try {
@@ -101,6 +106,7 @@ public class frmGestionAcabados extends JFrame {
         return num;
     }
 
+    //Abre un dialogo para crear un nuevo acabado y lo registra 
     private void nuevoAcabado() {
         JTextField nombre = new JTextField();
         JTextField descripcion = new JTextField();
@@ -129,6 +135,7 @@ public class frmGestionAcabados extends JFrame {
         }
     }
 
+    //Abre un dialogo para editar el acabado seleccionado 
     private void editarAcabado() {
         int row = tabla.getSelectedRow();
         if (row < 0) {
@@ -166,6 +173,7 @@ public class frmGestionAcabados extends JFrame {
         }
     }
 
+    //Elimina el acabado seleccionado tras confirmacion 
     private void eliminarAcabado() {
         int row = tabla.getSelectedRow();
         if (row < 0) {

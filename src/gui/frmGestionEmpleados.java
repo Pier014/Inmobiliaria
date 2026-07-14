@@ -7,12 +7,14 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import utilitario.PanelFondo;
 
+//Clase hija de JFrame. Ventana para gestionar (CRUD) empleados 
 public class frmGestionEmpleados extends JFrame {
 
     private GestionEmpleado gestionEmpleado;
     private JTable tabla;
     private DefaultTableModel model;
 
+    //Constructor: configura la interfaz grafica y carga los empleados existentes 
     public frmGestionEmpleados(GestionEmpleado gestionEmpleado) {
         this.gestionEmpleado = gestionEmpleado;
 
@@ -71,6 +73,7 @@ public class frmGestionEmpleados extends JFrame {
         cargarEmpleados();
     }
 
+    //Carga los empleados desde GestionEmpleado a la tabla 
     private void cargarEmpleados() {
         model.setRowCount(0);
         for (Empleado e : gestionEmpleado.obtenerEmpleados()) {
@@ -78,6 +81,7 @@ public class frmGestionEmpleados extends JFrame {
         }
     }
 
+    //Valida que un campo de texto no este vacio 
     private String validarCampoVacio(String val, String nombre) {
         if (val == null || val.trim().isEmpty()) {
             throw new IllegalArgumentException(nombre + " no puede estar vacio.");
@@ -85,6 +89,7 @@ public class frmGestionEmpleados extends JFrame {
         return val.trim();
     }
 
+    //Abre un dialogo para crear un nuevo empleado y lo registra 
     private void nuevoEmpleado() {
         JTextField dni = new JTextField();
         JTextField nombres = new JTextField();
@@ -136,6 +141,7 @@ public class frmGestionEmpleados extends JFrame {
         }
     }
 
+    //Abre un dialogo para editar el empleado seleccionado 
     private void editarEmpleado() {
         int row = tabla.getSelectedRow();
         if (row < 0) {
@@ -197,6 +203,7 @@ public class frmGestionEmpleados extends JFrame {
         }
     }
 
+    //Elimina el empleado seleccionado tras confirmacion 
     private void eliminarEmpleado() {
         int row = tabla.getSelectedRow();
         if (row < 0) {

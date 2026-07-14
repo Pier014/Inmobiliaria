@@ -2,18 +2,21 @@ package gestion;
 
 import clases.Cliente;
 
+//Clase que gestiona el CRUD de clientes usando un arreglo estatico 
 public class GestionCliente {
 
     private static final int MAX_CLIENTES = 50;
     private Cliente[] clientes;
     private int totalClientes;
 
+    //Constructor: inicializa el arreglo de clientes y carga datos de ejemplo 
     public GestionCliente() {
         clientes = new Cliente[MAX_CLIENTES];
         totalClientes = 0;
         inicializarDatos();
     }
 
+    //Carga clientes de ejemplo para pruebas 
     private void inicializarDatos() {
         clientes[totalClientes++] = new Cliente("44444444", "Juan", "Perez", "1985-03-15",
             "Casado", "Ingeniero", 8000, "987654321", "juan@correo.com");
@@ -21,6 +24,7 @@ public class GestionCliente {
             "Soltera", "Arquitecta", 6000, "987654322", "ana@correo.com");
     }
 
+    //Registra un nuevo cliente si hay espacio disponible 
     public boolean registrar(Cliente c) {
         if (totalClientes < MAX_CLIENTES) {
             clientes[totalClientes++] = c;
@@ -29,6 +33,7 @@ public class GestionCliente {
         return false;
     }
 
+    //Actualiza un cliente en la posicion indicada 
     public boolean actualizar(int index, Cliente c) {
         if (index >= 0 && index < totalClientes) {
             clientes[index] = c;
@@ -37,6 +42,7 @@ public class GestionCliente {
         return false;
     }
 
+    //Elimina un cliente por su indice y reorganiza el arreglo 
     public boolean eliminar(int index) {
         if (index >= 0 && index < totalClientes) {
             for (int i = index; i < totalClientes - 1; i++) {
@@ -48,10 +54,12 @@ public class GestionCliente {
         return false;
     }
 
+    //Retorna una copia del arreglo de clientes registrados 
     public Cliente[] obtenerClientes() {
         return java.util.Arrays.copyOf(clientes, totalClientes);
     }
 
+    //Retorna la cantidad total de clientes registrados 
     public int obtenerTotal() {
         return totalClientes;
     }

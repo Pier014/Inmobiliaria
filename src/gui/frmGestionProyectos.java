@@ -10,6 +10,7 @@ import utilitario.DatePicker;
 import utilitario.PanelFondo;
 import java.util.Arrays;
 
+//Clase hija de JFrame. Ventana para gestionar proyectos y sus departamentos 
 public class frmGestionProyectos extends JFrame {
 
     private GestionProyecto gestionProyecto;
@@ -17,6 +18,7 @@ public class frmGestionProyectos extends JFrame {
     private JTable tablaDptos;
     private DefaultTableModel modelDptos;
 
+    //Constructor: configura la interfaz grafica y carga los proyectos existentes 
     public frmGestionProyectos(GestionProyecto gestionProyecto) {
         this.gestionProyecto = gestionProyecto;
 
@@ -110,6 +112,7 @@ public class frmGestionProyectos extends JFrame {
         cmbProyectos.addActionListener(e -> mostrarDepartamentos(txtInfo));
     }
 
+    //Carga los proyectos en el JComboBox y muestra los departamentos del primero 
     private void cargarProyectos() {
         cmbProyectos.removeAllItems();
         for (ProyectosConstruccion p : gestionProyecto.obtenerProyectos()) {
@@ -120,6 +123,7 @@ public class frmGestionProyectos extends JFrame {
         }
     }
 
+    //Muestra la informacion del proyecto seleccionado y sus departamentos en la tabla 
     private void mostrarDepartamentos(JTextArea txtInfo) {
         ProyectosConstruccion p = (ProyectosConstruccion) cmbProyectos.getSelectedItem();
         if (p == null) return;
@@ -143,6 +147,7 @@ public class frmGestionProyectos extends JFrame {
         }
     }
 
+    //Abre un dialogo para crear un nuevo proyecto y lo registra 
     private void nuevoProyecto() {
         JTextField nombre = new JTextField();
         JTextField direccion = new JTextField();
@@ -188,6 +193,7 @@ public class frmGestionProyectos extends JFrame {
         }
     }
 
+    //Abre un dialogo para editar el proyecto seleccionado 
     private void editarProyecto() {
         int idx = cmbProyectos.getSelectedIndex();
         if (idx < 0) {
@@ -246,6 +252,7 @@ public class frmGestionProyectos extends JFrame {
         }
     }
 
+    //Elimina el proyecto seleccionado tras confirmacion 
     private void eliminarProyecto() {
         int idx = cmbProyectos.getSelectedIndex();
         if (idx < 0) {
@@ -264,6 +271,7 @@ public class frmGestionProyectos extends JFrame {
         }
     }
 
+    //Valida que un campo de texto no este vacio 
     private String validarCampoVacio(String val, String nombre) {
         if (val == null || val.trim().isEmpty()) {
             throw new IllegalArgumentException(nombre + " no puede estar vacio.");
@@ -271,6 +279,7 @@ public class frmGestionProyectos extends JFrame {
         return val.trim();
     }
 
+    //Valida que un valor sea un entero no negativo 
     private int validarEnteroPositivo(String val, String nombre) {
         int num;
         try {
@@ -284,6 +293,7 @@ public class frmGestionProyectos extends JFrame {
         return num;
     }
 
+    //Valida que un valor sea un numero positivo 
     private double validarDoublePositivo(String val, String nombre) {
         double num;
         try {
@@ -297,6 +307,7 @@ public class frmGestionProyectos extends JFrame {
         return num;
     }
 
+    //Abre un dialogo para crear un nuevo departamento en el proyecto seleccionado 
     private void nuevoDepartamento() {
         int idx = cmbProyectos.getSelectedIndex();
         if (idx < 0) {
@@ -350,6 +361,7 @@ public class frmGestionProyectos extends JFrame {
         }
     }
 
+    //Permite cambiar el estado de un departamento del proyecto seleccionado 
     private void cambiarEstadoDepartamento() {
         int idx = cmbProyectos.getSelectedIndex();
         if (idx < 0) {
